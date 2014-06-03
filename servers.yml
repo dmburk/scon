@@ -1,0 +1,12 @@
+-
+  id: 1
+  name: chef
+  address: 192.168.1.2
+-
+  id: 2
+  name: workstation
+  address: 192.168.1.3
+-
+  id: 3
+  name: webserver
+  address: 192.168.1.4
