@@ -1,21 +1,13 @@
-require 'yaml'
+require './server.rb'
 
-# Load server list
-servers = begin
-    YAML.load(File.open("./servers.yml"))
-rescue ArgumentError => e
-    puts "Could not parse YAML: #{e.message}"
-end
-
-# Display all servers
-servers.each { |server| puts "#{server['id']}. #{server['name']}" }
+# Display the server list
+@server = Server.new
+@server.list
 
 # Get user selection
 print "Make a selection: "
-selection = gets.chomp.to_i
+id = gets.chomp.to_i
 
-# Extract the selected server from the array
-server = servers.find { |server| server['id'] == selection }
-
-# Display the server information
+server = @server.select id
+# Display the selected server information
 puts "Connecting to #{server['name']}..."
