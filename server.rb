@@ -2,9 +2,12 @@ require 'yaml'
 
 class Server
   def initialize
+    # Yaml server list location
+    server_list = "./servers.yml"
+
     # Load server list
     @server_list = begin
-      YAML.load(File.open("./servers.yml"))
+      YAML.load(File.open(server_list))
     rescue ArgumentError => e
       puts "Could not parse YAML: #{e.message}"
     end
