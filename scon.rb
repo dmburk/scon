@@ -7,7 +7,14 @@ require './server.rb'
 # Get user selection
 print "Make a selection: "
 id = gets.chomp.to_i
-
-# Display the selected server information
 server = @server.select id
-puts "Connecting to #{server['name']}..."
+
+# Build ssh connection string
+scon = "ssh "
+scon << "-i #{server['identity_file_path']} " if server['identity_file_path']
+scon << "#{server['user']}@" if server['user']
+scon << server['address']
+scon << ":#{server['port']}" if server['port']
+
+# TODO replace with connection command
+puts "Connecting to " + scon
